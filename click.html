@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button functions</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #333; /* Dark background color */
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        .btn {
+            background-color: #458d85;
+            border: none;
+            color: white;
+            padding: 30px 32px;
+            text-align: center;
+            font-size: 24px; /* Larger font size */
+            border-radius: 50%;
+            opacity: 0.6;
+            transition: 0.3s;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            opacity: 1; /* Full opacity on hover */
+        }
+
+        .color-1 { background-color: #007bff; }
+        .color-2 { background-color: #28a745; }
+        .color-3 { background-color: #dc3545; }
+
+        #clickCount {
+            text-align: center;
+            margin-top: 20px; /* Add margin to separate from the button */
+            font-size: 18px; /* Adjust font size */
+        }
+    </style>
+</head>
+<body>
+    <button class="btn" id="myButton">Click<br>here</button>
+    <p id="clickCount">Number of clicks: 0</p>
+
+    <script>
+        // JavaScript code to handle button clicks
+        var clickCount = 0;
+        var button = document.getElementById('myButton');
+        var clickCountDisplay = document.getElementById('clickCount');
+
+        button.addEventListener('click', function() {
+            clickCount++;
+            clickCountDisplay.textContent = 'Number of clicks: ' + clickCount;
+
+            var currentColorClass = button.classList[1]; // Get the current color class
+            var colors = ['color-1', 'color-2', 'color-3'];
+            var currentIndex = colors.indexOf(currentColorClass);
+            var nextIndex = (currentIndex + 1) % colors.length;
+            var nextColorClass = colors[nextIndex];
+
+            // Remove the current color class and add the next one
+            button.classList.remove(currentColorClass);
+            button.classList.add(nextColorClass);
+        });
+    </script>
+</body>
+</html>
